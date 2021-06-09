@@ -2,12 +2,14 @@ package com.zhy.blog.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -29,15 +31,25 @@ public class Blog implements Serializable {
 
     private Long user_id;
 
+    @NotBlank(message = "标题不能为空")
     private String title;
 
+    @NotBlank(message = "摘要不能为空")
     private String description;
 
+    @NotBlank(message = "内容不能为空")
     private String content;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDateTime created;
 
     private Integer status;
 
+    public Long getUser_id() {
+        return user_id;
+    }
 
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
 }
