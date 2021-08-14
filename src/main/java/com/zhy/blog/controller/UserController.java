@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
+//    @RequiresAuthentication
     @GetMapping("/{id}")
     public Object test(@PathVariable("id") Long id) {
         return userService.getById(id);
